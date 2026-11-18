@@ -277,6 +277,28 @@
 
     <div id="pdfImageDownloads"></div>
     </section>
+    <section class="categories" id="text-repeater">
+    <h2>Text Repeater</h2>
+    <p>Repeat your text as many times as you want.</p>
+
+    <textarea id="repeatText" placeholder="Enter your text"></textarea>
+
+    <br><br>
+
+    <input type="number" id="repeatCount" min="1" max="10000" value="5" placeholder="Repeat count">
+
+    <br><br>
+
+    <button onclick="repeatText()">Repeat Text</button>
+
+    <p id="repeatMessage"></p>
+
+    <textarea id="repeatResult" placeholder="Your repeated text will appear here" readonly></textarea>
+
+    <br><br>
+
+    <button onclick="copyRepeatedText()">Copy Result</button>
+    </section>
     
     
     <section class="about" id="about">
