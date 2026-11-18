@@ -154,3 +154,43 @@ function compressImage() {
 
     reader.readAsDataURL(file);
 }
+function resizeImage() {
+    const file = document.getElementById("resizeInput").files[0];
+    const width = parseInt(document.getElementById("resizeWidth").value);
+    const height = parseInt(document.getElementById("resizeHeight").value);
+    const info = document.getElementById("resizeInfo");
+    const download = document.getElementById("resizeDownload");
+
+    if (!file || !width || !height || width <= 0 || height <= 0) {
+        alert("Select an image and enter valid width and height.");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+        const img = new Image();
+
+        img.onload = function() {
+            const canvas = document.createElement("canvas");
+            canvas.width = width;
+            canvas.height = height;
+
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0, width, height);
+
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+
+                download.href = url;
+                download.style.display = "inline-block";
+
+                info.textContent = "New image size: " + width + " × " + height + " pixels.";
+            }, "image/png");
+        };
+
+        img.src = event.target.result;
+    };
+
+    reader.readAsDataURL(file);
+}
