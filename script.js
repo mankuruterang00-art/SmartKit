@@ -654,3 +654,68 @@ async function copyRepeatedText() {
         message.textContent = "Copy attempted. Please check your clipboard.";
     }
 }
+function calculatePercentage() {
+    const number = Number(document.getElementById("percentValue").value);
+    const rate = Number(document.getElementById("percentRate").value);
+    const result = document.getElementById("percentResult");
+
+    if (
+        document.getElementById("percentValue").value === "" ||
+        document.getElementById("percentRate").value === ""
+    ) {
+        result.textContent = "Please enter both values.";
+        return;
+    }
+
+    result.textContent = (number * rate / 100).toFixed(2);
+}
+
+function calculateChange() {
+    const oldValue = Number(document.getElementById("oldValue").value);
+    const newValue = Number(document.getElementById("newValue").value);
+    const result = document.getElementById("changeResult");
+
+    if (
+        document.getElementById("oldValue").value === "" ||
+        document.getElementById("newValue").value === ""
+    ) {
+        result.textContent = "Please enter both values.";
+        return;
+    }
+
+    if (oldValue === 0) {
+        result.textContent = "Original value cannot be zero.";
+        return;
+    }
+
+    const change = ((newValue - oldValue) / Math.abs(oldValue)) * 100;
+
+    if (change > 0) {
+        result.textContent = "Increase: " + change.toFixed(2) + "%";
+    } else if (change < 0) {
+        result.textContent = "Decrease: " + Math.abs(change).toFixed(2) + "%";
+    } else {
+        result.textContent = "No change: 0%";
+    }
+}
+
+function calculateWhatPercent() {
+    const part = Number(document.getElementById("partValue").value);
+    const total = Number(document.getElementById("totalValue").value);
+    const result = document.getElementById("whatPercentResult");
+
+    if (
+        document.getElementById("partValue").value === "" ||
+        document.getElementById("totalValue").value === ""
+    ) {
+        result.textContent = "Please enter both values.";
+        return;
+    }
+
+    if (total === 0) {
+        result.textContent = "Total cannot be zero.";
+        return;
+    }
+
+    result.textContent = ((part / total) * 100).toFixed(2) + "%";
+}
