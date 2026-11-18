@@ -546,3 +546,73 @@ async function convertImagesToPDF() {
         message.textContent = "Error: " + error.message;
     }
 }
+async function convertPDFToImages() {
+    const file = document.getElementById("pdfToImageFile").files[0];
+    const format = document.getElementById("pdfImageFormat").value;
+    const message = document.getElementById("pdfImageMessage");
+    const downloads = document.getElementById("pdfImageDownloads");
+
+    downloads.innerHTML = "";
+
+    if (!file) {
+        alert("Please select a PDF file.");
+        return;
+    }
+
+    try {
+        message.textContent = "Loading PDF...";
+
+        const bytes = new Uint8Array(await file.arrayBuffer());
+
+        const pdf = await pdfjsLib.getDocument({
+            data: bytes
+        }).promise;
+
+        for (let i = 1; i <= pdf.numPages; i++) {
+            message.textContent =
+                "Converting page " + i + " of " + pdf.numPages + "...";
+
+            const page = await pdf.getPage(i);
+            const viewport = page.getViewport({ scale: 1.5 });
+
+            const canvas = document.createElement("canvas");
+            const context = canvas.getContext("2d");
+
+            canvas.width = Math.ceil(viewport.width);
+            canvas.height = Math.ceil(viewport.height);
+
+            await page.render({
+                canvasContext: context,
+                viewport: viewport
+            }).promise;
+
+            const blob = await new Promise(resolve => {
+                canvas.toBlob(resolve, format, 0.9);
+            });
+
+            if (!blob) {
+                throw new Error("Could not convert page " + i);
+            }
+
+            const url = URL.createObjectURL(blob);
+            const extension = format === "image/jpeg" ? "jpg" : "png";
+
+            const link = document.createElement("a");
+            link.href = url;
+            link.download = "smartkit-page-" + i + "." + extension;
+            link.textContent = "Download Page " + i;
+            link.style.display = "block";
+            link.style.margin = "10px 0";
+
+            downloads.appendChild(link);
+
+            canvas.width = 0;
+            canvas.height = 0;
+        }
+
+        message.textContent = "PDF converted successfully!";
+
+    } catch (error) {
+        message.textContent = "Error: " + error.message;
+    }
+}
