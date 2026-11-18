@@ -47,3 +47,29 @@ searchInput.addEventListener("keydown", function(event) {
 });
 
 console.log("SmartKit search is ready!");
+const wordText = document.getElementById("wordText");
+
+if (wordText) {
+    wordText.addEventListener("input", function () {
+        const text = wordText.value;
+
+        const words = text.trim()
+            ? text.trim().split(/\s+/).length
+            : 0;
+
+        const characters = text.length;
+
+        const sentences = text.trim()
+            ? (text.match(/[.!?]+(?=\s|$)/g) || []).length
+            : 0;
+
+        const paragraphs = text.trim()
+            ? text.trim().split(/\n\s*\n/).filter(p => p.trim()).length
+            : 0;
+
+        document.getElementById("wordCount").textContent = words;
+        document.getElementById("charCount").textContent = characters;
+        document.getElementById("sentenceCount").textContent = sentences;
+        document.getElementById("paragraphCount").textContent = paragraphs;
+    });
+}
