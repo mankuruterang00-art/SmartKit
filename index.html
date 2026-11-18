@@ -254,6 +254,29 @@
        Download PDF
     </a>
     </section>
+    <section class="categories" id="pdf-to-image">
+    <h2>PDF to Image</h2>
+    <p>Convert PDF pages into JPG or PNG images.</p>
+
+    <input type="file" id="pdfToImageFile" accept="application/pdf">
+
+    <br><br>
+
+    <label for="pdfImageFormat">Choose Format:</label>
+
+    <select id="pdfImageFormat">
+        <option value="image/jpeg">JPG</option>
+        <option value="image/png">PNG</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="convertPDFToImages()">Convert PDF</button>
+
+    <p id="pdfImageMessage"></p>
+
+    <div id="pdfImageDownloads"></div>
+    </section>
     
     
     <section class="about" id="about">
