@@ -195,6 +195,7 @@ function resizeImage() {
     reader.readAsDataURL(file);
 }
 async function mergePDFs() {
+    alert("PDF Merger function started!");
     const files = document.getElementById("pdfFiles").files;
     const message = document.getElementById("pdfMessage");
     const download = document.getElementById("pdfDownload");
