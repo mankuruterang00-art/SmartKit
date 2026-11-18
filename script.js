@@ -316,19 +316,18 @@ async function compressPDF() {
     }
 
     let scale = 1.2;
-    let quality = 0.65;
+let quality = 0.45;
 
-    if (level === "low") {
-        scale = 1.5;
-        quality = 0.82;
-    } else if (level === "medium") {
-        scale = 1.2;
-        quality = 0.65;
-    } else if (level === "high") {
-        scale = 1.0;
-        quality = 0.45;
-    }
-
+if (level === "low") {
+    scale = 1.2;
+    quality = 0.75;
+} else if (level === "medium") {
+    scale = 0.9;
+    quality = 0.45;
+} else if (level === "high") {
+    scale = 0.65;
+    quality = 0.25;
+}
     try {
         message.textContent = "Compressing PDF... Please wait.";
 
