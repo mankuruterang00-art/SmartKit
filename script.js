@@ -405,3 +405,62 @@ if (level === "low") {
 }
 pdfjsLib.GlobalWorkerOptions.workerSrc =
     "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+function convertImage() {
+    const file = document.getElementById("convertImageFile").files[0];
+    const format = document.getElementById("imageFormat").value;
+    const message = document.getElementById("convertMessage");
+    const download = document.getElementById("convertDownload");
+
+    download.style.display = "none";
+
+    if (!file) {
+        alert("Please select an image.");
+        return;
+    }
+
+    const image = new Image();
+    const reader = new FileReader();
+
+    message.textContent = "Converting image...";
+
+    reader.onload = function (event) {
+        image.onload = function () {
+            const canvas = document.createElement("canvas");
+            const context = canvas.getContext("2d");
+
+            canvas.width = image.width;
+            canvas.height = image.height;
+
+            if (format === "image/jpeg") {
+                context.fillStyle = "#ffffff";
+                context.fillRect(0, 0, canvas.width, canvas.height);
+            }
+
+            context.drawImage(image, 0, 0);
+
+            canvas.toBlob(function (blob) {
+                if (!blob) {
+                    message.textContent = "Conversion failed.";
+                    return;
+                }
+
+                const url = URL.createObjectURL(blob);
+                const extension = format.split("/")[1].replace("jpeg", "jpg");
+
+                download.href = url;
+                download.download = "smartkit-converted." + extension;
+                download.style.display = "inline-block";
+
+                message.textContent = "Image converted successfully!";
+            }, format);
+        };
+
+        image.onerror = function () {
+            message.textContent = "Unable to read this image.";
+        };
+
+        image.src = event.target.result;
+    };
+
+    reader.readAsDataURL(file);
+}
