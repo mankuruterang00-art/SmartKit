@@ -180,6 +180,36 @@
     <a id="splitDownload" style="display:none;" download="smartkit-split.pdf">Download Split PDF</a>
 </section>
     
+<section class="categories" id="pdf-compressor">
+    <h2>PDF Compressor</h2>
+    <p>Reduce the size of your PDF files.</p>
+
+    <input type="file" id="compressPdfFile" accept="application/pdf">
+
+    <br><br>
+
+    <label for="compressionLevel">Compression Level:</label>
+
+    <select id="compressionLevel">
+        <option value="low">Low</option>
+        <option value="medium" selected>Medium</option>
+        <option value="high">High</option>
+    </select>
+
+    <br><br>
+
+    <button onclick="compressPDF()">Compress PDF</button>
+
+    <p id="compressMessage"></p>
+
+    <a id="compressDownload"
+       style="display:none;"
+       download="smartkit-compressed.pdf">
+       Download Compressed PDF
+    </a>
+</section>
+    
+    
     <section class="about" id="about">
         <section class="categories" id="word-counter">
     <h2>Word Counter</h2>
