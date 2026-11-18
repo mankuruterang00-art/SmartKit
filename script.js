@@ -93,3 +93,20 @@ function convertCase(type) {
 
     document.getElementById("caseResult").value = result;
 }
+function generateQR() {
+    const text = document.getElementById("qrText").value.trim();
+    const qrBox = document.getElementById("qrcode");
+
+    qrBox.innerHTML = "";
+
+    if (!text) {
+        alert("Please enter text or a website link.");
+        return;
+    }
+
+    new QRCode(qrBox, {
+        text: text,
+        width: 200,
+        height: 200
+    });
+}
