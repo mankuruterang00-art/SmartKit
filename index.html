@@ -114,6 +114,23 @@
 
     <div id="qrcode" style="margin-top:20px;"></div>
     </section>
+    <section class="categories" id="image-compressor">
+    <h2>Image Compressor</h2>
+    <p>Reduce image file size easily.</p>
+
+    <input type="file" id="imageInput" accept="image/*" style="margin-top:15px;">
+
+    <div style="margin-top:15px;">
+        <label>Compression quality: 70%</label>
+        <input type="range" id="imageQuality" min="10" max="100" value="70">
+    </div>
+
+    <button onclick="compressImage()" style="margin-top:15px;">Compress Image</button>
+
+    <p id="imageInfo" style="margin-top:15px;"></p>
+
+    <a id="downloadImage" style="display:none;" download="smartkit-compressed.jpg">Download Compressed Image</a>
+    </section>
     <section class="about" id="about">
         <section class="categories" id="word-counter">
     <h2>Word Counter</h2>
