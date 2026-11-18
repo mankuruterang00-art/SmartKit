@@ -1,18 +1,121 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="SmartKit provides free online PDF, image, QR code, text and calculator tools.">
     <title>SmartKit - All Your Tools. One Place.</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <h1>SmartKit</h1>
+<header class="navbar">
+    <div class="logo">SmartKit<span>.</span></div>
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#tools">All Tools</a>
+        <a href="#about">About</a>
+    </nav>
+</header>
+
+<main>
+    <section class="hero" id="home">
+        <span class="tagline">ALL YOUR TOOLS. ONE PLACE.</span>
+        <h1>Simple Tools.<br>Smarter Work.</h1>
+        <p>Free online tools to make your everyday tasks easier.</p>
+
+        <div class="search-box">
+            <input type="text" id="searchInput"
+                placeholder="Search for a tool...">
+            <button onclick="searchTools()">Search</button>
+        </div>
+    </section>
+
+    <section class="tools-section" id="tools">
+        <div class="section-heading">
+            <span>EXPLORE SMARTKIT</span>
+            <h2>All Your Tools</h2>
+            <p>Everything you need, organized in one place.</p>
+        </div>
+
+        <div class="tools-grid">
+
+            <div class="tool-card">
+                <div class="tool-icon">📄</div>
+                <h3>PDF Tools</h3>
+                <p>Manage your PDF documents easily.</p>
+                <a href="#pdf">Explore tools →</a>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">🖼️</div>
+                <h3>Image Tools</h3>
+                <p>Compress, resize and convert images.</p>
+                <a href="#image">Explore tools →</a>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">🔳</div>
+                <h3>QR Tools</h3>
+                <p>Create QR codes quickly and easily.</p>
+                <a href="#qr">Explore tools →</a>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">✍️</div>
+                <h3>Text Tools</h3>
+                <p>Count words and change text formats.</p>
+                <a href="#text">Explore tools →</a>
+            </div>
+
+            <div class="tool-card">
+                <div class="tool-icon">🧮</div>
+                <h3>Calculators</h3>
+                <p>Calculate percentages, age and more.</p>
+                <a href="#calculators">Explore tools →</a>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="categories" id="pdf">
+        <h2>PDF Tools</h2>
+        <p>Merge, split and compress PDF files.</p>
+    </section>
+
+    <section class="categories" id="image">
+        <h2>Image Tools</h2>
+        <p>Compress, resize and convert images.</p>
+    </section>
+
+    <section class="categories" id="qr">
+        <h2>QR Tools</h2>
+        <p>Generate QR codes for your links and text.</p>
+    </section>
+
+    <section class="categories" id="text">
+        <h2>Text Tools</h2>
+        <p>Word counter and case converter.</p>
+    </section>
+
+    <section class="categories" id="calculators">
+        <h2>Calculators</h2>
+        <p>Percentage, age and unit calculators.</p>
+    </section>
+
+    <section class="about" id="about">
+        <h2>About SmartKit</h2>
+        <p>SmartKit brings useful online tools together in one simple place.</p>
+    </section>
+</main>
+
+<footer>
+    <h3>SmartKit.</h3>
     <p>All Your Tools. One Place.</p>
+    <p>© 2026 SmartKit. All rights reserved.</p>
+</footer>
 
-    <h2>Welcome to SmartKit</h2>
-    <p>Your free online tools platform.</p>
-
+<script src="script.js"></script>
 </body>
 </html>
