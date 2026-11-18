@@ -194,3 +194,48 @@ function resizeImage() {
 
     reader.readAsDataURL(file);
 }
+async function mergePDFs() {
+    const files = document.getElementById("pdfFiles").files;
+    const message = document.getElementById("pdfMessage");
+    const download = document.getElementById("pdfDownload");
+
+    download.style.display = "none";
+
+    if (files.length < 2) {
+        alert("Please select at least 2 PDF files.");
+        return;
+    }
+
+    try {
+        message.textContent = "Merging PDFs...";
+
+        const mergedPdf = await PDFLib.PDFDocument.create();
+
+        for (const file of files) {
+            const bytes = await file.arrayBuffer();
+            const pdf = await PDFLib.PDFDocument.load(bytes);
+
+            const pages = await mergedPdf.copyPages(
+                pdf,
+                pdf.getPageIndices()
+            );
+
+            pages.forEach(page => mergedPdf.addPage(page));
+        }
+
+        const mergedBytes = await mergedPdf.save();
+
+        const blob = new Blob([mergedBytes], {
+            type: "application/pdf"
+        });
+
+        const url = URL.createObjectURL(blob);
+
+        download.href = url;
+        download.style.display = "inline-block";
+
+        message.textContent = "PDFs merged successfully!";
+    } catch (error) {
+        message.textContent = "Unable to merge PDFs. Please check your files.";
+    }
+}
