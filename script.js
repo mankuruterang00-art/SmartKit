@@ -240,3 +240,65 @@ async function mergePDFs() {
         message.textContent = "Unable to merge PDFs. Please check your files.";
     }
 }
+async function splitPDF() {
+    const file = document.getElementById("splitPdfFile").files[0];
+    const pagesInput = document.getElementById("splitPages").value;
+    const message = document.getElementById("splitMessage");
+    const download = document.getElementById("splitDownload");
+
+    download.style.display = "none";
+
+    if (!file || !pagesInput.trim()) {
+        alert("Select a PDF and enter page numbers.");
+        return;
+    }
+
+    try {
+        message.textContent = "Splitting PDF...";
+
+        const bytes = await file.arrayBuffer();
+        const pdf = await PDFLib.PDFDocument.load(bytes);
+        const newPdf = await PDFLib.PDFDocument.create();
+
+        const selectedPages = [];
+
+        pagesInput.split(",").forEach(part => {
+            part = part.trim();
+
+            if (part.includes("-")) {
+                const [start, end] = part.split("-").map(Number);
+
+                for (let i = start; i <= end; i++) {
+                    selectedPages.push(i - 1);
+                }
+            } else {
+                selectedPages.push(Number(part) - 1);
+            }
+        });
+
+        const validPages = selectedPages.filter(
+            p => Number.isInteger(p) && p >= 0 && p < pdf.getPageCount()
+        );
+
+        if (validPages.length === 0) {
+            throw new Error("No valid pages selected.");
+        }
+
+        const copiedPages = await newPdf.copyPages(pdf, validPages);
+        copiedPages.forEach(page => newPdf.addPage(page));
+
+        const result = await newPdf.save();
+        const blob = new Blob([result], {
+            type: "application/pdf"
+        });
+
+        const url = URL.createObjectURL(blob);
+
+        download.href = url;
+        download.style.display = "inline-block";
+
+        message.textContent = "PDF split successfully!";
+    } catch (error) {
+        message.textContent = "Error: " + error.message;
+    }
+}
