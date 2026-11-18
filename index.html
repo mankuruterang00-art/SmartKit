@@ -164,6 +164,22 @@
         Download Merged PDF
     </a>
     </section>
+    
+<section class="categories" id="pdf-splitter">
+    <h2>PDF Splitter</h2>
+    <p>Extract selected pages from your PDF file.</p>
+
+    <input type="file" id="splitPdfFile" accept="application/pdf" style="margin-top:15px;">
+
+    <input type="text" id="splitPages" placeholder="Enter pages (e.g. 1,3,5-7)" style="margin-top:15px; width:100%; padding:10px;">
+
+    <button onclick="splitPDF()" style="margin-top:15px;">Split PDF</button>
+
+    <p id="splitMessage" style="margin-top:15px;"></p>
+
+    <a id="splitDownload" style="display:none;" download="smartkit-split.pdf">Download Split PDF</a>
+</section>
+    
     <section class="about" id="about">
         <section class="categories" id="word-counter">
     <h2>Word Counter</h2>
