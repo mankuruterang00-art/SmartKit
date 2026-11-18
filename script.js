@@ -110,3 +110,47 @@ function generateQR() {
         height: 200
     });
 }
+function compressImage() {
+    const file = document.getElementById("imageInput").files[0];
+    const quality = document.getElementById("imageQuality").value / 100;
+    const info = document.getElementById("imageInfo");
+    const download = document.getElementById("downloadImage");
+
+    if (!file) {
+        alert("Please select an image first.");
+        return;
+    }
+
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+        const img = new Image();
+
+        img.onload = function() {
+            const canvas = document.createElement("canvas");
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0);
+
+            canvas.toBlob(function(blob) {
+                const url = URL.createObjectURL(blob);
+
+                download.href = url;
+                download.style.display = "inline-block";
+
+                const originalSize = (file.size / 1024).toFixed(2);
+                const compressedSize = (blob.size / 1024).toFixed(2);
+
+                info.textContent =
+                    "Original: " + originalSize + " KB | Compressed: " +
+                    compressedSize + " KB";
+            }, "image/jpeg", quality);
+        };
+
+        img.src = event.target.result;
+    };
+
+    reader.readAsDataURL(file);
+}
