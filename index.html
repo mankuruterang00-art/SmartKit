@@ -118,6 +118,21 @@
         <p>Paragraphs: <strong id="paragraphCount">0</strong></p>
     </div>
         </section>
+        <section class="categories" id="case-converter">
+    <h2>Case Converter</h2>
+    <p>Convert your text into different letter formats.</p>
+
+    <textarea id="caseText" placeholder="Enter your text here..." rows="6" style="width:100%; padding:15px; margin-top:15px; border:1px solid #ddd; border-radius:10px; font-size:16px;"></textarea>
+
+    <div style="display:flex; flex-wrap:wrap; gap:10px; margin-top:15px;">
+        <button onclick="convertCase('upper')">UPPERCASE</button>
+        <button onclick="convertCase('lower')">lowercase</button>
+        <button onclick="convertCase('title')">Title Case</button>
+        <button onclick="convertCase('sentence')">Sentence case</button>
+    </div>
+
+    <textarea id="caseResult" placeholder="Converted text will appear here..." rows="6" readonly style="width:100%; padding:15px; margin-top:15px; border:1px solid #ddd; border-radius:10px; font-size:16px;"></textarea>
+        </section>
         <h2>About SmartKit</h2>
         <p>SmartKit brings useful online tools together in one simple place.</p>
     </section>
