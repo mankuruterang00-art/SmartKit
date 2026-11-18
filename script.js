@@ -302,3 +302,45 @@ async function splitPDF() {
         message.textContent = "Error: " + error.message;
     }
 }
+async function compressPDF() {
+    const file = document.getElementById("compressPdfFile").files[0];
+    const message = document.getElementById("compressMessage");
+    const download = document.getElementById("compressDownload");
+
+    download.style.display = "none";
+
+    if (!file) {
+        alert("Please select a PDF file.");
+        return;
+    }
+
+    try {
+        message.textContent = "Processing PDF...";
+
+        const bytes = await file.arrayBuffer();
+        const pdf = await PDFLib.PDFDocument.load(bytes);
+
+        const compressedBytes = await pdf.save({
+            useObjectStreams: true
+        });
+
+        const blob = new Blob([compressedBytes], {
+            type: "application/pdf"
+        });
+
+        const url = URL.createObjectURL(blob);
+
+        download.href = url;
+        download.style.display = "inline-block";
+
+        const originalSize = (file.size / 1024).toFixed(2);
+        const newSize = (blob.size / 1024).toFixed(2);
+
+        message.textContent =
+            "Processing complete! Original: " +
+            originalSize + " KB | New: " + newSize + " KB";
+
+    } catch (error) {
+        message.textContent = "Error: " + error.message;
+    }
+}
