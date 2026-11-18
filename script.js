@@ -616,3 +616,41 @@ async function convertPDFToImages() {
         message.textContent = "Error: " + error.message;
     }
 }
+function repeatText() {
+    const text = document.getElementById("repeatText").value;
+    const count = Number(document.getElementById("repeatCount").value);
+    const result = document.getElementById("repeatResult");
+    const message = document.getElementById("repeatMessage");
+
+    if (!text.trim()) {
+        message.textContent = "Please enter some text.";
+        return;
+    }
+
+    if (!Number.isInteger(count) || count < 1 || count > 10000) {
+        message.textContent = "Enter a number between 1 and 10000.";
+        return;
+    }
+
+    result.value = Array(count).fill(text).join("\n");
+    message.textContent = "Text repeated " + count + " times!";
+}
+
+async function copyRepeatedText() {
+    const result = document.getElementById("repeatResult");
+    const message = document.getElementById("repeatMessage");
+
+    if (!result.value) {
+        message.textContent = "Please generate repeated text first.";
+        return;
+    }
+
+    try {
+        await navigator.clipboard.writeText(result.value);
+        message.textContent = "Copied successfully!";
+    } catch (error) {
+        result.select();
+        document.execCommand("copy");
+        message.textContent = "Copy attempted. Please check your clipboard.";
+    }
+}
