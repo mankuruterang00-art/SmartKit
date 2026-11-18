@@ -74,3 +74,22 @@ if (wordText) {
         document.getElementById("paragraphCount").textContent = paragraphs;
     });
 }
+function convertCase(type) {
+    const text = document.getElementById("caseText").value;
+    let result = "";
+
+    if (type === "upper") {
+        result = text.toUpperCase();
+    } 
+    else if (type === "lower") {
+        result = text.toLowerCase();
+    } 
+    else if (type === "title") {
+        result = text.toLowerCase().replace(/\b\w/g, char => char.toUpperCase());
+    } 
+    else if (type === "sentence") {
+        result = text.toLowerCase().replace(/(^\s*\w|[.!?]\s*\w)/g, char => char.toUpperCase());
+    }
+
+    document.getElementById("caseResult").value = result;
+}
