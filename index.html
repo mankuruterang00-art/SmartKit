@@ -148,6 +148,22 @@
 
     <a id="resizeDownload" style="display:none;" download="smartkit-resized.png">Download Resized Image</a>
     </section>
+    <section class="categories" id="pdf-merger">
+    <h2>PDF Merger</h2>
+    <p>Combine multiple PDF files into one PDF.</p>
+
+    <input type="file" id="pdfFiles" accept="application/pdf" multiple style="margin-top:15px;">
+
+    <button onclick="mergePDFs()" style="margin-top:15px;">
+        Merge PDFs
+    </button>
+
+    <p id="pdfMessage" style="margin-top:15px;"></p>
+
+    <a id="pdfDownload" style="display:none;" download="smartkit-merged.pdf">
+        Download Merged PDF
+    </a>
+    </section>
     <section class="about" id="about">
         <section class="categories" id="word-counter">
     <h2>Word Counter</h2>
