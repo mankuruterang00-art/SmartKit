@@ -464,3 +464,85 @@ function convertImage() {
 
     reader.readAsDataURL(file);
 }
+async function convertImagesToPDF() {
+    const files = document.getElementById("imagesToPdf").files;
+    const message = document.getElementById("imagesPdfMessage");
+    const download = document.getElementById("imagesPdfDownload");
+
+    download.style.display = "none";
+
+    if (!files.length) {
+        alert("Please select at least one image.");
+        return;
+    }
+
+    try {
+        message.textContent = "Creating PDF...";
+
+        const pdf = await PDFLib.PDFDocument.create();
+
+        for (const file of files) {
+            if (!file.type.startsWith("image/")) continue;
+
+            const bytes = await file.arrayBuffer();
+            let image;
+
+            if (file.type === "image/jpeg") {
+                image = await pdf.embedJpg(bytes);
+            } else if (file.type === "image/png") {
+                image = await pdf.embedPng(bytes);
+            } else {
+                const bitmap = await createImageBitmap(file);
+                const canvas = document.createElement("canvas");
+
+                canvas.width = bitmap.width;
+                canvas.height = bitmap.height;
+
+                canvas.getContext("2d").drawImage(bitmap, 0, 0);
+
+                const blob = await new Promise(resolve =>
+                    canvas.toBlob(resolve, "image/png")
+                );
+
+                if (!blob) throw new Error("Image conversion failed.");
+
+                image = await pdf.embedPng(
+                    await blob.arrayBuffer()
+                );
+
+                bitmap.close();
+            }
+
+            const page = pdf.addPage([
+                image.width,
+                image.height
+            ]);
+
+            page.drawImage(image, {
+                x: 0,
+                y: 0,
+                width: image.width,
+                height: image.height
+            });
+        }
+
+        if (pdf.getPageCount() === 0) {
+            throw new Error("No supported images found.");
+        }
+
+        const result = await pdf.save();
+        const blob = new Blob([result], {
+            type: "application/pdf"
+        });
+
+        const url = URL.createObjectURL(blob);
+
+        download.href = url;
+        download.style.display = "inline-block";
+
+        message.textContent = "PDF created successfully!";
+
+    } catch (error) {
+        message.textContent = "Error: " + error.message;
+    }
+}
