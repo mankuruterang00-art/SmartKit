@@ -719,3 +719,64 @@ function calculateWhatPercent() {
 
     result.textContent = ((part / total) * 100).toFixed(2) + "%";
 }
+function calculateAge() {
+    const birthInput = document.getElementById("birthDate").value;
+    const result = document.getElementById("ageResult");
+
+    if (!birthInput) {
+        result.textContent = "Please enter your date of birth.";
+        return;
+    }
+
+    const birth = new Date(birthInput + "T00:00:00");
+    const today = new Date();
+
+    if (birth > today) {
+        result.textContent = "Birth date cannot be in the future.";
+        return;
+    }
+
+    let years = today.getFullYear() - birth.getFullYear();
+    let months = today.getMonth() - birth.getMonth();
+    let days = today.getDate() - birth.getDate();
+
+    if (days < 0) {
+        months--;
+        const previousMonthDays = new Date(
+            today.getFullYear(),
+            today.getMonth(),
+            0
+        ).getDate();
+        days += previousMonthDays;
+    }
+
+    if (months < 0) {
+        years--;
+        months += 12;
+    }
+
+    let nextBirthday = new Date(
+        today.getFullYear(),
+        birth.getMonth(),
+        birth.getDate()
+    );
+
+    if (nextBirthday < today) {
+        nextBirthday.setFullYear(today.getFullYear() + 1);
+    }
+
+    const todayDate = new Date(
+        today.getFullYear(),
+        today.getMonth(),
+        today.getDate()
+    );
+
+    const daysUntil = Math.round(
+        (nextBirthday - todayDate) / (1000 * 60 * 60 * 24)
+    );
+
+    result.textContent =
+        "Your age: " + years + " years, " +
+        months + " months, and " + days + " days. " +
+        "Days until next birthday: " + daysUntil + ".";
+}
