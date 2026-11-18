@@ -13,7 +13,8 @@ function searchTools() {
         "pdf": ["pdf", "merge pdf", "split pdf", "compress pdf"],
         "image": ["image", "photo", "compress image", "resize image", "convert image"],
         "qr": ["qr", "qr code", "qr generator"],
-        "text": ["text", "word counter", "case converter", "word count"],
+        "text": ["text", "case converter"],
+"word-counter": ["word counter", "word count"],
         "calculators": ["calculator", "percentage", "age calculator", "unit converter"]
     };
 
