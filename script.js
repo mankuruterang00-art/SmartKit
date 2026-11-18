@@ -304,6 +304,7 @@ async function splitPDF() {
 }
 async function compressPDF() {
     const file = document.getElementById("compressPdfFile").files[0];
+    const level = document.getElementById("compressionLevel").value;
     const message = document.getElementById("compressMessage");
     const download = document.getElementById("compressDownload");
 
@@ -314,17 +315,76 @@ async function compressPDF() {
         return;
     }
 
+    let scale = 1.2;
+    let quality = 0.65;
+
+    if (level === "low") {
+        scale = 1.5;
+        quality = 0.82;
+    } else if (level === "medium") {
+        scale = 1.2;
+        quality = 0.65;
+    } else if (level === "high") {
+        scale = 1.0;
+        quality = 0.45;
+    }
+
     try {
-        message.textContent = "Processing PDF...";
+        message.textContent = "Compressing PDF... Please wait.";
 
-        const bytes = await file.arrayBuffer();
-        const pdf = await PDFLib.PDFDocument.load(bytes);
+        const bytes = new Uint8Array(await file.arrayBuffer());
 
-        const compressedBytes = await pdf.save({
-            useObjectStreams: true
-        });
+        const sourcePDF = await pdfjsLib.getDocument({
+            data: bytes
+        }).promise;
 
-        const blob = new Blob([compressedBytes], {
+        const newPDF = await PDFLib.PDFDocument.create();
+
+        for (let i = 1; i <= sourcePDF.numPages; i++) {
+            message.textContent =
+                "Compressing page " + i + " of " + sourcePDF.numPages + "...";
+
+            const page = await sourcePDF.getPage(i);
+            const originalViewport = page.getViewport({ scale: 1 });
+            const viewport = page.getViewport({ scale: scale });
+
+            const canvas = document.createElement("canvas");
+            const context = canvas.getContext("2d");
+
+            canvas.width = Math.ceil(viewport.width);
+            canvas.height = Math.ceil(viewport.height);
+
+            await page.render({
+                canvasContext: context,
+                viewport: viewport
+            }).promise;
+
+            const imageData = canvas.toDataURL("image/jpeg", quality);
+            const imageBytes = Uint8Array.from(
+                atob(imageData.split(",")[1]),
+                character => character.charCodeAt(0)
+            );
+
+            const image = await newPDF.embedJpg(imageBytes);
+
+            const newPage = newPDF.addPage([
+                originalViewport.width,
+                originalViewport.height
+            ]);
+
+            newPage.drawImage(image, {
+                x: 0,
+                y: 0,
+                width: originalViewport.width,
+                height: originalViewport.height
+            });
+
+            canvas.width = 0;
+            canvas.height = 0;
+        }
+
+        const result = await newPDF.save();
+        const blob = new Blob([result], {
             type: "application/pdf"
         });
 
@@ -337,7 +397,7 @@ async function compressPDF() {
         const newSize = (blob.size / 1024).toFixed(2);
 
         message.textContent =
-            "Processing complete! Original: " +
+            "Compression complete! Original: " +
             originalSize + " KB | New: " + newSize + " KB";
 
     } catch (error) {
