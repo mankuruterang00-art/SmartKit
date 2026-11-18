@@ -236,6 +236,24 @@
        Download Converted Image
     </a>
     </section>
+    <section class="categories" id="image-to-pdf">
+    <h2>Image to PDF</h2>
+    <p>Convert multiple images into one PDF file.</p>
+
+    <input type="file" id="imagesToPdf" accept="image/*" multiple>
+
+    <br><br>
+
+    <button onclick="convertImagesToPDF()">Convert to PDF</button>
+
+    <p id="imagesPdfMessage"></p>
+
+    <a id="imagesPdfDownload"
+       style="display:none;"
+       download="smartkit-images.pdf">
+       Download PDF
+    </a>
+    </section>
     
     
     <section class="about" id="about">
