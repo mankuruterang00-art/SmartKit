@@ -299,6 +299,31 @@
 
     <button onclick="copyRepeatedText()">Copy Result</button>
     </section>
+    <section class="categories" id="percentage-calculator">
+    <h2>Percentage Calculator</h2>
+
+    <h3>1. Percentage of a Number</h3>
+    <input type="number" id="percentValue" placeholder="Enter number">
+    <input type="number" id="percentRate" placeholder="Enter percentage">
+    <button onclick="calculatePercentage()">Calculate</button>
+    <p id="percentResult"></p>
+
+    <hr>
+
+    <h3>2. Percentage Increase or Decrease</h3>
+    <input type="number" id="oldValue" placeholder="Original value">
+    <input type="number" id="newValue" placeholder="New value">
+    <button onclick="calculateChange()">Calculate</button>
+    <p id="changeResult"></p>
+
+    <hr>
+
+    <h3>3. What Percentage Is One Number of Another?</h3>
+    <input type="number" id="partValue" placeholder="First number">
+    <input type="number" id="totalValue" placeholder="Total number">
+    <button onclick="calculateWhatPercent()">Calculate</button>
+    <p id="whatPercentResult"></p>
+    </section>
     
     
     <section class="about" id="about">
