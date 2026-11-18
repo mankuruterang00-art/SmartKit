@@ -131,6 +131,23 @@
 
     <a id="downloadImage" style="display:none;" download="smartkit-compressed.jpg">Download Compressed Image</a>
     </section>
+    <section class="categories" id="image-resizer">
+    <h2>Image Resizer</h2>
+    <p>Resize your images by choosing custom dimensions.</p>
+
+    <input type="file" id="resizeInput" accept="image/*">
+
+    <div style="margin-top:15px;">
+        <input type="number" id="resizeWidth" placeholder="Width (px)">
+        <input type="number" id="resizeHeight" placeholder="Height (px)">
+    </div>
+
+    <button onclick="resizeImage()" style="margin-top:15px;">Resize Image</button>
+
+    <p id="resizeInfo"></p>
+
+    <a id="resizeDownload" style="display:none;" download="smartkit-resized.png">Download Resized Image</a>
+    </section>
     <section class="about" id="about">
         <section class="categories" id="word-counter">
     <h2>Word Counter</h2>
@@ -160,6 +177,7 @@
 
     <textarea id="caseResult" placeholder="Converted text will appear here..." rows="6" readonly style="width:100%; padding:15px; margin-top:15px; border:1px solid #ddd; border-radius:10px; font-size:16px;"></textarea>
         </section>
+        
         <h2>About SmartKit</h2>
         <p>SmartKit brings useful online tools together in one simple place.</p>
     </section>
