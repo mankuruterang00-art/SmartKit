@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Merger - SmartKit</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f1f5f9;
+    color: #1e293b;
+}
+
+header {
+    background: #172554;
+    color: white;
+    padding: 22px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    max-width: 600px;
+    margin: 45px auto;
+    padding: 20px;
+}
+
+.tool-box {
+    background: white;
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px #00000010;
+    text-align: center;
+}
+
+input, button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 18px;
+    border-radius: 9px;
+    font-size: 16px;
+}
+
+button {
+    background: #2563eb;
+    color: white;
+    border: none;
+    font-weight: bold;
+}
+
+#pdfDownload {
+    display: block;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #64748b;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>SmartKit.</h1>
+    <p>PDF Merger</p>
+    <a href="index.html">← Back to Home</a>
+</header>
+
+<main>
+    <div class="tool-box">
+        <h2>Merge PDF Files</h2>
+        <p>Select multiple PDF files and combine them into one.</p>
+
+        <input type="file" id="pdfFiles"
+        accept="application/pdf" multiple>
+
+        <button onclick="mergePDFs()">Merge PDFs</button>
+
+        <p id="pdfMessage"></p>
+
+        <a id="pdfDownload" style="display:none;"
+        download="smartkit-merged.pdf">
+        Download Merged PDF
+        </a>
+    </div>
+</main>
+
+<footer>
+    © 2026 SmartKit. All rights reserved.
+</footer>
+
+<script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
