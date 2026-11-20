@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Percentage Calculator - SmartKit</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#eafaf5;color:#174b3d}
+header{background:#087e62;color:white;text-align:center;padding:30px 15px}
+main{max-width:650px;margin:30px auto;padding:18px}
+.card{background:white;padding:22px;border-radius:16px;margin-bottom:18px;box-shadow:0 5px 20px #087e6218}
+h2{color:#087e62;margin-top:0}
+input,button{width:100%;padding:13px;margin:9px 0;border:1px solid #b8dfd2;border-radius:8px;font-size:16px}
+button{background:#087e62;color:white;border:0;font-weight:bold}
+.result{font-weight:bold;color:#087e62;margin-top:10px}
+.back{display:inline-block;margin:15px 0;color:#087e62;font-weight:bold;text-decoration:none}
+</style>
+</head>
+<body>
+<header>
+<h1>Percentage Calculator</h1>
+<p>Calculate percentages quickly and easily</p>
+</header>
+<main>
+<div class="card">
+<h2>Calculate Percentage</h2>
+<p>What is X% of Y?</p>
+<input type="number" id="percentValue" placeholder="Enter percentage">
+<input type="number" id="percentRate" placeholder="Enter number">
+<button onclick="calculatePercentage()">Calculate</button>
+<div class="result" id="percentResult"></div>
+</div>
+
+<div class="card">
+<h2>Percentage Change</h2>
+<p>Calculate the increase or decrease.</p>
+<input type="number" id="oldValue" placeholder="Old value">
+<input type="number" id="newValue" placeholder="New value">
+<button onclick="calculateChange()">Calculate Change</button>
+<div class="result" id="changeResult"></div>
+</div>
+
+<div class="card">
+<h2>What Percentage?</h2>
+<p>What percentage is one number of another?</p>
+<input type="number" id="partValue" placeholder="Enter part">
+<input type="number" id="totalValue" placeholder="Enter total">
+<button onclick="calculateWhatPercent()">Calculate</button>
+<div class="result" id="whatPercentResult"></div>
+</div>
+
+<a class="back" href="index.html">← Back to Home</a>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
