@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Code Generator - SmartKit</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#edf4ff;color:#20345c}
+header{background:#2455a4;color:white;text-align:center;padding:35px 15px}
+header h1{margin:0;font-size:30px}
+main{max-width:620px;margin:40px auto;padding:20px}
+.card{background:white;padding:28px;border-radius:8px;box-shadow:0 8px 25px #2455a420;text-align:center}
+h2{color:#2455a4}
+textarea,button{width:100%;padding:14px;margin:12px 0;font-size:16px;border-radius:8px}
+textarea{border:1px solid #b8c9e5;min-height:110px}
+button{background:#2455a4;color:white;border:0;font-weight:bold}
+#qrcode{display:flex;justify-content:center;margin:25px auto;min-height:20px}
+.back{display:inline-block;margin-top:22px;color:#2455a4;font-weight:bold;text-decoration:none}
+footer{text-align:center;padding:20px;color:#65738b}
+</style>
+</head>
+<body>
+<header>
+<h1>QR Code Generator</h1>
+<p>Create QR codes instantly and easily</p>
+</header>
+<main>
+<div class="card">
+<h2>Generate Your QR Code</h2>
+<p>Enter text or a website link below.</p>
+<textarea id="qrText" placeholder="Enter text or URL here..."></textarea>
+<button onclick="generateQR()">Generate QR Code</button>
+<div id="qrcode"></div>
+</div>
+<a class="back" href="index.html">← Back to Home</a>
+</main>
+<footer>SmartKit — All Your Tools. One Place.</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
