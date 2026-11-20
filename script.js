@@ -854,3 +854,26 @@ function compressImage() {
 
     reader.readAsDataURL(file);
 }
+function downloadQR() {
+    const qr = document.getElementById("qrcode");
+    const canvas = qr.querySelector("canvas");
+    const img = qr.querySelector("img");
+
+    let imageURL = "";
+
+    if (canvas) {
+        imageURL = canvas.toDataURL("image/png");
+    } else if (img) {
+        imageURL = img.src;
+    }
+
+    if (!imageURL) {
+        alert("Please generate a QR code first.");
+        return;
+    }
+
+    const link = document.createElement("a");
+    link.href = imageURL;
+    link.download = "smartkit-qr-code.png";
+    link.click();
+}
