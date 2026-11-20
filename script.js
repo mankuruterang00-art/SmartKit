@@ -58,7 +58,7 @@ if (wordText) {
             ? text.trim().split(/\s+/).length
             : 0;
 
-        const characters = text.length;
+        const characters = text.replace(/\s/g, "").length;
 
         const sentences = text.trim()
             ? (text.match(/[.!?]+(?=\s|$)/g) || []).length
