@@ -154,12 +154,15 @@ function compressImage() {
 
     reader.readAsDataURL(file);
 }
+
 function resizeImage() {
     const file = document.getElementById("resizeInput").files[0];
     const width = parseInt(document.getElementById("resizeWidth").value);
     const height = parseInt(document.getElementById("resizeHeight").value);
     const info = document.getElementById("resizeInfo");
     const download = document.getElementById("resizeDownload");
+
+    download.style.display = "none";
 
     if (!file || !width || !height || width <= 0 || height <= 0) {
         alert("Select an image and enter valid width and height.");
@@ -177,16 +180,31 @@ function resizeImage() {
             canvas.height = height;
 
             const ctx = canvas.getContext("2d");
+
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = "high";
+
             ctx.drawImage(img, 0, 0, width, height);
 
             canvas.toBlob(function(blob) {
+                if (!blob) {
+                    info.textContent = "Image resizing failed. Please try again.";
+                    return;
+                }
+
                 const url = URL.createObjectURL(blob);
 
                 download.href = url;
+                download.download = "smartkit-resized.png";
                 download.style.display = "inline-block";
 
-                info.textContent = "New image size: " + width + " × " + height + " pixels.";
+                info.textContent =
+                    "New image size: " + width + " × " + height + " pixels.";
             }, "image/png");
+        };
+
+        img.onerror = function() {
+            info.textContent = "Could not load this image.";
         };
 
         img.src = event.target.result;
@@ -194,6 +212,7 @@ function resizeImage() {
 
     reader.readAsDataURL(file);
 }
+
 async function mergePDFs() {
     alert("PDF Merger function started!");
     const files = document.getElementById("pdfFiles").files;
