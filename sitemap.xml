@@ -24,5 +24,10 @@
 
     <url><loc>https://smartkit-5lv.pages.dev/privacy-policy.html</loc></url>
     <url><loc>https://smartkit-5lv.pages.dev/terms.html</loc></url>
-
+<url>
+    <loc>https://smartkit-5lv.pages.dev/about.html</loc>
+</url>
+<url>
+    <loc>https://smartkit-5lv.pages.dev/contact.html</loc>
+</url>
 </urlset>
