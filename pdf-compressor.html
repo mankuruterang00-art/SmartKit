@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Compressor - SmartKit</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f3ff;
+    color: #2e1065;
+}
+
+header {
+    background: #5b21b6;
+    color: white;
+    text-align: center;
+    padding: 24px;
+}
+
+header h1 { margin: 0; }
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    max-width: 600px;
+    margin: 45px auto;
+    padding: 20px;
+}
+
+.tool-box {
+    background: white;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px #00000012;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 18px;
+    border-radius: 9px;
+    font-size: 16px;
+}
+
+input, select { border: 1px solid #ddd6fe; }
+
+button {
+    background: #7c3aed;
+    color: white;
+    border: none;
+    font-weight: bold;
+}
+
+#compressDownload {
+    display: block;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #6d28d9;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>SmartKit.</h1>
+    <p>PDF Compressor</p>
+    <a href="index.html">← Back to Home</a>
+</header>
+
+<main>
+    <div class="tool-box">
+        <h2>Compress Your PDF</h2>
+        <p>Reduce your PDF file size by choosing a compression level.</p>
+
+        <input type="file" id="compressPdfFile" accept="application/pdf">
+
+        <label for="compressionLevel">Choose Compression Level:</label>
+
+        <select id="compressionLevel">
+            <option value="low">Low</option>
+            <option value="medium" selected>Medium</option>
+            <option value="high">High</option>
+        </select>
+
+        <button onclick="compressPDF()">Compress PDF</button>
+
+        <p id="compressMessage"></p>
+
+        <a id="compressDownload" style="display:none;"
+        download="smartkit-compressed.pdf">
+        Download Compressed PDF
+        </a>
+    </div>
+</main>
+
+<footer>
+    © 2026 SmartKit. All rights reserved.
+</footer>
+
+<script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
