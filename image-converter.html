@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Image Converter - SmartKit</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#fff0f5;color:#46223b}
+header{background:#ad367c;color:white;text-align:center;padding:35px 15px}
+header h1{margin:0;font-size:30px}
+main{max-width:620px;margin:40px auto;padding:20px}
+.card{background:white;padding:28px;border-radius:20px;box-shadow:0 8px 25px #ad367c20}
+h2{color:#ad367c}
+input,select,button{width:100%;padding:14px;margin:12px 0;font-size:16px;border:1px solid #e5bfd5;border-radius:10px}
+button{background:#ad367c;color:white;border:0;font-weight:bold}
+#convertMessage{margin-top:15px;font-weight:bold}
+#convertDownload{display:block;margin-top:15px;padding:13px;background:#fce1ef;color:#84235e;text-align:center;text-decoration:none;border-radius:10px}
+.back{display:inline-block;margin-top:22px;color:#ad367c;font-weight:bold;text-decoration:none}
+footer{text-align:center;padding:20px;color:#806078}
+</style>
+</head>
+<body>
+<header>
+<h1>Image Converter</h1>
+<p>Convert images into different formats</p>
+</header>
+<main>
+<div class="card">
+<h2>Convert Your Image</h2>
+<p>Select an image and choose your desired format.</p>
+<input type="file" id="convertImageFile" accept="image/*">
+<select id="imageFormat">
+<option value="image/png">PNG</option>
+<option value="image/jpeg">JPG</option>
+<option value="image/webp">WEBP</option>
+</select>
+<button onclick="convertImage()">Convert Image</button>
+<p id="convertMessage"></p>
+<a id="convertDownload" style="display:none;" download="smartkit-converted">Download Converted Image</a>
+</div>
+<a class="back" href="index.html">← Back to Home</a>
+</main>
+<footer>SmartKit — All Your Tools. One Place.</footer>
+<script src="script.js"></script>
+</body>
+</html>
