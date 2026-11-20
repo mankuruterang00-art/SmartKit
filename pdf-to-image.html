@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF to Image - SmartKit</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#e8fffb;color:#123c3a}
+header{background:#087e75;color:white;padding:25px 18px;text-align:center}
+header h1{margin:0;font-size:28px}
+header p{margin:8px 0 0}
+main{max-width:650px;margin:35px auto;padding:20px}
+.card{background:white;border-radius:18px;padding:25px;box-shadow:0 8px 25px #087e7520}
+h2{margin-top:0;color:#087e75}
+input,select,button{width:100%;padding:14px;margin:10px 0;border:1px solid #b5d9d5;border-radius:10px;font-size:16px}
+button{background:#087e75;color:white;border:0;font-weight:bold}
+button:active{background:#065c55}
+#pdfImageMessage{margin-top:15px;font-weight:bold}
+#pdfImageDownloads a{display:block;margin:12px 0;padding:12px;background:#d8f7f1;color:#075d55;border-radius:8px;text-decoration:none}
+.back{display:inline-block;margin-top:20px;color:#087e75;font-weight:bold;text-decoration:none}
+footer{text-align:center;padding:20px;color:#557}
+</style>
+</head>
+<body>
+<header>
+<h1>PDF to Image</h1>
+<p>Convert PDF pages into image files</p>
+</header>
+<main>
+<div class="card">
+<h2>Convert your PDF</h2>
+<p>Select a PDF file and choose your image format.</p>
+<input type="file" id="pdfToImageFile" accept="application/pdf">
+<select id="pdfImageFormat">
+<option value="image/jpeg">JPG Image</option>
+<option value="image/png">PNG Image</option>
+</select>
+<button onclick="convertPDFToImages()">Convert PDF to Images</button>
+<p id="pdfImageMessage"></p>
+<div id="pdfImageDownloads"></div>
+</div>
+<a class="back" href="index.html">← Back to Home</a>
+</main>
+<footer>SmartKit - All Your Tools. One Place.</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
