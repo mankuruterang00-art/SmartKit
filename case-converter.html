@@ -1,0 +1,50 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Case Converter - SmartKit</title>
+<style>
+body{margin:0;font-family:Arial;background:#fff5e9;color:#593b20}
+header{background:#bd7026;color:white;text-align:center;padding:30px}
+main{max-width:650px;margin:35px auto;padding:20px}
+.card{background:white;padding:25px;border-radius:5px;box-shadow:0 5px 20px #bd702620}
+textarea{width:100%;height:160px;padding:12px;box-sizing:border-box;border:1px solid #dec6a9;border-radius:6px;font-size:16px}
+button{padding:12px;margin:6px 4px 6px 0;border:0;border-radius:6px;background:#bd7026;color:white;font-weight:bold}
+#caseResult{white-space:pre-wrap;background:#fff0dd;padding:15px;margin-top:15px;min-height:45px;overflow-wrap:anywhere}
+.back{display:inline-block;margin-top:20px;color:#bd7026;font-weight:bold;text-decoration:none}
+</style>
+</head>
+<body>
+<header><h1>Case Converter</h1><p>Change your text into different cases</p></header>
+<main><div class="card">
+<h2>Enter Your Text</h2>
+<textarea id="caseText" placeholder="Type or paste your text..."></textarea>
+<h3>Choose Conversion</h3>
+<button onclick="convertCase('upper')">UPPERCASE</button>
+<button onclick="convertCase('lower')">lowercase</button>
+<button onclick="convertCase('title')">Title Case</button>
+<button onclick="convertCase('sentence')">Sentence case</button>
+<h3>Result</h3>
+<div id="caseResult"></div>
+<button onclick="copyCase()">Copy Result</button>
+</div><a class="back" href="index.html">← Back to Home</a></main>
+<script>
+function convertCase(type){
+const text=document.getElementById("caseText").value;
+let result="";
+if(type==="upper")result=text.toUpperCase();
+if(type==="lower")result=text.toLowerCase();
+if(type==="title")result=text.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase());
+if(type==="sentence")result=text.toLowerCase().replace(/(^\s*\w|[.!?]\s+\w)/g,c=>c.toUpperCase());
+document.getElementById("caseResult").textContent=result;
+}
+function copyCase(){
+const text=document.getElementById("caseResult").textContent;
+if(!text){alert("Please convert some text first.");return;}
+navigator.clipboard.writeText(text).then(()=>alert("Copied!")).catch(()=>alert("Copy is not available in this browser."));
+}
+</script>
+</body>
+</html>
