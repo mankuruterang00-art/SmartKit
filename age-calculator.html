@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Age Calculator - SmartKit</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,sans-serif;background:#fff0ed;color:#613027}
+header{background:#c34d3c;color:white;text-align:center;padding:35px 15px}
+main{max-width:600px;margin:45px auto;padding:20px}
+.card{background:white;padding:28px;border-radius:22px;box-shadow:0 8px 25px #c34d3c20;text-align:center}
+h2{color:#c34d3c}
+input,button{width:100%;padding:15px;margin:12px 0;border:1px solid #e8c3bd;border-radius:10px;font-size:16px}
+button{background:#c34d3c;color:white;border:0;font-weight:bold}
+#ageResult{margin-top:20px;font-size:19px;font-weight:bold;line-height:1.8;color:#a43d30}
+.back{display:inline-block;margin-top:22px;color:#c34d3c;font-weight:bold;text-decoration:none}
+</style>
+</head>
+<body>
+<header>
+<h1>Age Calculator</h1>
+<p>Find your exact age in years, months and days</p>
+</header>
+<main>
+<div class="card">
+<h2>Calculate Your Age</h2>
+<p>Select your date of birth.</p>
+<input type="date" id="birthDate">
+<button onclick="calculateAge()">Calculate My Age</button>
+<div id="ageResult"></div>
+</div>
+<a class="back" href="index.html">← Back to Home</a>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
