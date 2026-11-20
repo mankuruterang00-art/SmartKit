@@ -1,0 +1,113 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PDF Splitter - SmartKit</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #fff7ed;
+    color: #431407;
+}
+
+header {
+    background: #9a3412;
+    color: white;
+    text-align: center;
+    padding: 24px;
+}
+
+header h1 { margin: 0; }
+
+header a {
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    max-width: 600px;
+    margin: 45px auto;
+    padding: 20px;
+}
+
+.tool-box {
+    background: white;
+    padding: 28px;
+    border-radius: 18px;
+    box-shadow: 0 5px 20px #00000012;
+}
+
+input, button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 18px;
+    border-radius: 9px;
+    font-size: 16px;
+}
+
+input { border: 1px solid #fed7aa; }
+
+button {
+    background: #ea580c;
+    color: white;
+    border: none;
+    font-weight: bold;
+}
+
+#splitDownload {
+    display: block;
+    margin-top: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #9a3412;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>SmartKit.</h1>
+    <p>PDF Splitter</p>
+    <a href="index.html">← Back to Home</a>
+</header>
+
+<main>
+    <div class="tool-box">
+        <h2>Split Your PDF</h2>
+        <p>Select a PDF and enter the page numbers you want to extract.</p>
+
+        <input type="file" id="splitPdfFile" accept="application/pdf">
+
+        <input type="text" id="splitPages"
+        placeholder="Example: 1,3,5-7">
+
+        <button onclick="splitPDF()">Split PDF</button>
+
+        <p id="splitMessage"></p>
+
+        <a id="splitDownload" style="display:none;"
+        download="smartkit-split.pdf">
+        Download Split PDF
+        </a>
+    </div>
+</main>
+
+<footer>
+    © 2026 SmartKit. All rights reserved.
+</footer>
+
+<script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
